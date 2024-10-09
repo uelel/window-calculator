@@ -2,6 +2,7 @@ import React from 'react';
 
 // Components
 import Header from '../Header';
+import Footer from '../Footer';
 
 class App extends React.Component {
 
@@ -19,8 +20,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="w-full flex flex-col items-center overflow-x-hidden">
+      <div className="w-full min-h-screen flex flex-col items-center overflow-x-hidden">
         <Header/>
+        <div className="w-full flex flex-col lg:flex-row grow justify-center items-center bg-light">
+          
+        </div>
+        <Footer/>
       </div>
     );
   };

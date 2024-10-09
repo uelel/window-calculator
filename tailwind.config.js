@@ -3,6 +3,7 @@ const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = withMT({
   content: [
+    "./public/index.html",
     "./src/*.{js,jsx,ts,tsx}",
     "./src/components/**/*.{js,jsx,ts,tsx}"
   ],
@@ -18,10 +19,26 @@ module.exports = withMT({
   theme: {
     extend: {
       colors : {
-        'dark':'#004d65',
-        'light':'#008cb4',
+        'dark': '#004d65',
+        'medium': '#008cb4',
+        'light': '#f4f7fa',
+        'gray': '#9CA3AF',
+      },
+      spacing: {
+        '300': '300px',
+        '480': '480px',
+        '560': '560px',
+      },
+      keyframes: {
+        'button_pulsing': {
+          '0%, 100%': { 'box-shadow': '0 0 0 0px rgba(255, 255, 255, 0.5)' },
+          '50%': { 'box-shadow': '0 0 0 14px rgba(255, 255, 255, 0.5)' },
+        },
+      },
+      animation: {
+        'button_pulse': 'button_pulsing 2s ease-in-out infinite',
       }
-    },
+    }
   },
   plugins: [],
 });
