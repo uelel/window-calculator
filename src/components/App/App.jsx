@@ -1,7 +1,10 @@
 import React from 'react';
 
+import { material } from '../../data';
+
 // Components
 import Header from '../Header';
+import Content from '../Content';
 import Footer from '../Footer';
 
 class App extends React.Component {
@@ -12,19 +15,22 @@ class App extends React.Component {
 
   state = {
   	step: 0,
+    material: null
   };
 
   setStep = (value) => {
     this.setState({ step: Number(value) });
   };
 
+  setMaterial = (value) => {
+    this.setState({ material: String(value) });
+  };
+
   render() {
     return (
-      <div className="w-full min-h-screen flex flex-col items-center overflow-x-hidden">
+      <div className="w-full h-screen min-h-screen flex flex-col items-center overflow-x-hidden">
         <Header/>
-        <div className="w-full flex flex-col lg:flex-row grow justify-center items-center bg-light">
-          
-        </div>
+        <Content image="0a846ef2-4551-476c-805d-2ce28f79657d.jpg"/>
         <Footer/>
       </div>
     );
