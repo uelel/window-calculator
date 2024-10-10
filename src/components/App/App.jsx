@@ -28,7 +28,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="w-full h-screen min-h-screen flex flex-col items-center overflow-x-hidden">
+      <div className="w-full h-screen max-h-screen flex flex-col items-center overflow-x-hidden">
         <Header/>
         <Content image="0a846ef2-4551-476c-805d-2ce28f79657d.jpg"/>
         <Footer/>
