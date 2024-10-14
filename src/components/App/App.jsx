@@ -52,8 +52,9 @@ class App extends React.Component {
       <div className="w-full h-screen max-h-screen flex flex-col items-center overflow-x-hidden">
         <Header/>
         <Content heading="Vyberte Materiál">
-          {this.materials?.map((item) => (
+          {this.materials?.map((item, index) => (
             <Card 
+              key={index} 
               label={item.label} 
               value={item.value} 
               image={item.image} 

@@ -16,6 +16,15 @@ class Content extends React.Component {
     }
   }
 
+  renderHeading() {
+    return (
+      <div className="outline-none flex items-center group leading-tight mb-5 md:mb-10">
+        <div className="w-8 h-8 md:w-10 md:h-10 mr-5 flex shrink-0 items-center justify-center mr-3 rounded-full border-1 border-dark transition duration-200 border-none bg-dark text-white text-xl">1</div>
+        <h1>{this.props.heading}</h1>
+      </div>
+    );
+  }
+
   renderContent() {
     if (this.props.image) {
       var classes = "basis-1/2";
@@ -24,11 +33,8 @@ class Content extends React.Component {
     }
     return (
       <div className={`w-full h-full flex flex-col justify-start items-start px-4 md:px-12 py-8 md:py-10 overflow-hidden bg-light grow-0 shrink-0 ${classes}`}>
-        <div className="outline-none flex items-center group leading-tight mb-5 md:mb-10">
-          <div className="w-10 h-10 mr-5 flex shrink-0 items-center justify-center mr-3 rounded-full border-1 border-dark transition duration-200 border-none bg-dark text-white text-xl">1</div>
-          <h1>{this.props.heading}</h1>
-        </div>
-        <div className="w-full grid gap-4 md:gap-8 xl:gap-12 grid-cols-2 md:grid-cols-3">
+        {this.renderHeading()}
+        <div className="w-full grid gap-4 md:gap-8 xl:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {this.props.children}
         </div>
       </div>

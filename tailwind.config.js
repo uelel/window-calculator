@@ -23,6 +23,7 @@ module.exports = withMT({
         'medium': '#008cb4',
         'light': '#f4f7fa',
         'gray': '#9CA3AF',
+        'black': '#000000'
       },
       spacing: {
         '300': '300px',
