@@ -30,7 +30,7 @@ class App extends React.Component {
     return (
       <div className="w-full h-screen max-h-screen flex flex-col items-center overflow-x-hidden">
         <Header/>
-        <Content image="0a846ef2-4551-476c-805d-2ce28f79657d.jpg"/>
+        <Content />
         <Footer/>
       </div>
     );
