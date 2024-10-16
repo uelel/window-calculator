@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { InformationCircleIcon } from '@heroicons/react/24/solid';
+import ToolTip from "../MT/ToolTip";
 
 class Card extends React.Component {
   constructor(props) {
@@ -17,9 +16,7 @@ class Card extends React.Component {
   renderInfo() {
     if (this.props.desc !== "") {
       return (
-        <div tabIndex="0" data-original-title="null" className="ml-2">
-          <InformationCircleIcon className="size-6 font-bold text-black" />
-        </div>
+        <ToolTip text={this.props.desc} />
       );
     }
   }
