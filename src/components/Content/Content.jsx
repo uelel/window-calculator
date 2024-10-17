@@ -34,7 +34,7 @@ class Content extends React.Component {
     return (
       <div className={`w-full h-full flex flex-col justify-start items-start px-4 md:px-12 py-8 md:py-10 overflow-hidden bg-light grow-0 shrink-0 ${classes}`}>
         {this.renderHeading()}
-        <div className="w-full grid gap-4 md:gap-8 xl:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="w-full">
           {this.props.children}
         </div>
       </div>
