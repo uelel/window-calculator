@@ -5,7 +5,7 @@ import { materials } from '../../data';
 // Components
 import Header from '../Header';
 import Content from '../Content';
-import Options from '../Options';
+import SingleOptions from '../SingleOptions';
 import Footer from '../Footer';
 
 class App extends React.Component {
@@ -33,10 +33,9 @@ class App extends React.Component {
       <div className="w-full h-screen max-h-screen flex flex-col items-center overflow-x-hidden">
         <Header/>
         <Content heading="Vyberte Materiál">
-          <Options
+          <SingleOptions
             name="material"
             data={this.materials}
-            choice="single"
           />
         </Content>
         <Footer/>

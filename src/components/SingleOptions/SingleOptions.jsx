@@ -2,31 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from "../Card";
 
-class Options extends React.Component {
+class SingleOptions extends React.Component {
   constructor(props) {
     super(props);
-    if (this.props.choice === "single") {
-      this.state = {
-        value: null
-      };
-    } else if (this.props.choice === "multi") {
-      this.state = {
-        values: []
-      };
-    }
+    this.state = {
+      value: null
+    };
   }
 
   changeState = (e) => {
     const newValue = String(e);
-    if (this.props.choice === "single") {
-      this.setState((prevState) => ({
-        value: prevState.value === newValue ? null : newValue
-      }));
-
-    } else if (this.props.choice === "multi") {}
-    if (this.props.onChange) {
-      this.props.onChange(newValue);
-    }
+    this.setState((prevState) => ({
+      value: prevState.value === newValue ? null : newValue
+    }));
   }
 
   render() {
@@ -53,4 +41,4 @@ class Options extends React.Component {
   }
 }
 
-export default Options;
+export default SingleOptions;

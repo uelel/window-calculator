@@ -24,9 +24,9 @@ class Card extends React.Component {
     );
   }
 
-  renderName() {
+  renderName(classes) {
     return (
-      <div className="text-base md:text-lg leading-none">
+      <div className={`text-base md:text-lg leading-none ${classes}`}>
         {this.props.label}
       </div>
     );
@@ -61,21 +61,23 @@ class Card extends React.Component {
   }
 
   render() {
-    let cardClasses = "min-w-36 min-h-56 lg:min-h-72 outline-none rounded-md bg-white border-gray border-1 shadow cursor-pointer hover:shadow-xl transition duration-200";
+    let cardClasses = "";
+    let nameClasses = "";
     if (this.props.isSelected) {
-      cardClasses += " ring ring-dark shadow-xl"
+      cardClasses += " ring ring-dark shadow-xl";
+      nameClasses += " font-bold";
     }
     return (
       <div
         tabIndex="0"
         data-value={this.props.value} 
         onClick={this.handleClick} 
-        className={cardClasses}
+        className={`min-w-36 min-h-56 lg:min-h-72 outline-none rounded-md bg-white border-gray border-1 shadow cursor-pointer hover:shadow-xl transition duration-200 ${cardClasses}`}
       >
         {this.renderImage()}
         <div className="flex flex-col justify-start items-start border-1 border-transparent px-4 pb-4 pt-4">
           <div className="flex flex-row flex-nowrap items-center mb-2">
-            {this.renderName()}
+            {this.renderName(nameClasses)}
             {this.renderInfo()}
           </div>
           <div className="w-full flex flex-row flex-wrap justify-between items-center">
