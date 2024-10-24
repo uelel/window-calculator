@@ -14,7 +14,13 @@ class SingleOptions extends React.Component {
     const newValue = String(e);
     this.setState((prevState) => ({
       value: prevState.value === newValue ? null : newValue
-    }));
+    }),
+    () => {
+        if (this.props.onChange) {
+          this.props.onChange(this.state.value);
+        }
+      }
+    );
   }
 
   render() {
@@ -31,7 +37,7 @@ class SingleOptions extends React.Component {
           image={item.image} 
           price={item.price} 
           desc={item.desc} 
-          recommended={item.recommended}
+          recommended={item.recommended} 
           onClick={this.changeState} 
           isSelected={this.state.value === item.value} 
         />

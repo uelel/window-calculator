@@ -5,17 +5,16 @@ import ToolTip from "../MT/ToolTip";
 class Card extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) {
+  handleClick = (e) => {
     const value = e.currentTarget.getAttribute("data-value");
     if (this.props.onClick) {
       this.props.onClick(value);
     }
   }
 
-  renderImage() {
+  renderImage = () => {
     return (
       <div
         className="h-32 lg:h-48 bg-center bg-no-repeat bg-cover rounded-t"
@@ -24,7 +23,7 @@ class Card extends React.Component {
     );
   }
 
-  renderName(classes) {
+  renderName = (classes) => {
     return (
       <div className={`text-base md:text-lg leading-none ${classes}`}>
         {this.props.label}
@@ -32,7 +31,7 @@ class Card extends React.Component {
     );
   }
 
-  renderInfo() {
+  renderInfo = () => {
     if (this.props.desc !== "") {
       return (
         <ToolTip text={this.props.desc} />
@@ -40,7 +39,7 @@ class Card extends React.Component {
     }
   }
 
-  renderRecommended() {
+  renderRecommended = () => {
     if (this.props.recommended === true) {
       return (
         <div className="bg-dark rounded-lg text-sm md:text-base text-white inline-block py-0.5 px-2 mr-4 uppercase">
@@ -50,7 +49,7 @@ class Card extends React.Component {
     }
   }
 
-  renderPrice() {
+  renderPrice = () => {
     if (this.props.price !== 0) {
       return (
         <div className="text-base md:text-lg text-gray whitespace-nowrap">
