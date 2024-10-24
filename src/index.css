@@ -7,19 +7,13 @@
   @font-face {
     font-family: "PT Sans";
     font-weight: 400;
-    src: url(../public/fonts/PTSans-Regular.ttf) format("ttf");
-  }
-
-  @font-face {
-    font-family: "PT Sans";
-    font-weight: 400;
-    src: url(../public/fonts/PTSans-Italic.ttf) format("ttf");
+    src: url(../public/fonts/PTSans-Regular.ttf) format("truetype");
   }
 
   @font-face {
     font-family: "PT Sans";
     font-weight: 700;
-    src: url(../public/fonts/PTSans-Bold.ttf) format("ttf");
+    src: url(../public/fonts/PTSans-Bold.ttf) format("truetype");
   }
 
   html {

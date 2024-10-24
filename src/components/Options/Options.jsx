@@ -43,6 +43,7 @@ class Options extends React.Component {
           image={item.image} 
           price={item.price} 
           desc={item.desc} 
+          recommended={item.recommended}
           onClick={this.changeState} 
           isSelected={this.state.value === item.value} 
         />

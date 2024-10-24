@@ -18,16 +18,15 @@ module.exports = withMT({
   ],
   theme: {
     fontSize: {
-      'xs': '0.3rem',
-      'sm': '0.5rem',
+      'sm': '0.8rem',
       'base': '1rem',
-      'lg': '1.125rem',
-      'xl': '1.25rem',
+      'lg': '1.25rem',
+      'xl': '1.375rem',
       '2xl': '1.5rem',
       '3xl': '2rem',
     },
     fontFamily: {
-      'sans': ['PT Sans', 'system-ui' ],
+      'sans': ['PT Sans', 'sans-serif', 'system-ui' ],
     },
     extend: {
       colors : {

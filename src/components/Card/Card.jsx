@@ -24,10 +24,38 @@ class Card extends React.Component {
     );
   }
 
+  renderName() {
+    return (
+      <div className="text-base md:text-lg leading-none">
+        {this.props.label}
+      </div>
+    );
+  }
+
   renderInfo() {
     if (this.props.desc !== "") {
       return (
         <ToolTip text={this.props.desc} />
+      );
+    }
+  }
+
+  renderRecommended() {
+    if (this.props.recommended === true) {
+      return (
+        <div className="bg-dark rounded-lg text-sm md:text-base text-white inline-block py-0.5 px-2 mr-4 uppercase">
+          Doporučujeme
+        </div>
+      );
+    }
+  }
+
+  renderPrice() {
+    if (this.props.price !== 0) {
+      return (
+        <div className="text-base md:text-lg text-gray whitespace-nowrap">
+          + {this.props.price}Kč
+        </div>
       );
     }
   }
@@ -45,9 +73,15 @@ class Card extends React.Component {
         className={cardClasses}
       >
         {this.renderImage()}
-        <div className="flex flex-row flex-nowrap items-center border-1 border-transparent px-4 pb-4 pt-4">
-          <div className="text-lg leading-none">{this.props.label}</div>
-          {this.renderInfo()}
+        <div className="flex flex-col justify-start items-start border-1 border-transparent px-4 pb-4 pt-4">
+          <div className="flex flex-row flex-nowrap items-center mb-2">
+            {this.renderName()}
+            {this.renderInfo()}
+          </div>
+          <div className="w-full flex flex-row flex-wrap justify-between items-center">
+            {this.renderRecommended()}
+            {this.renderPrice()}
+          </div>
         </div>
       </div>
     );

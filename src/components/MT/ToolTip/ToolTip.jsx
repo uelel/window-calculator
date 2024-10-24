@@ -14,9 +14,9 @@ class ToolTip extends React.Component {
         content={
           <div className="w-56 md:w-80">
             <Typography
-              variant="small"
+              variant="paragraph"
               color="white"
-              className="font-normal leading-tight opacity-100"
+              className="font-normal text-sm md:text-base leading-tight opacity-100"
             >
               {text}
             </Typography>
