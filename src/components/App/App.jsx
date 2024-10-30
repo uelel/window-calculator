@@ -1,8 +1,11 @@
 import React from 'react';
+import { create } from "zustand";
 
+// Data
 import {
   materials,
-  drevo_typ } from '../../data';
+  drevo_typ
+} from '../../data';
 
 // Components
 import Header from '../Header';
@@ -10,126 +13,134 @@ import Content from '../Content';
 import SingleOptions from '../SingleOptions';
 import Footer from '../Footer';
 
+const stepStore = create((set, get) => ({
+
+  steps: [
+    { step: 0, name: "material", label: "Materiál", value: null, data: materials, heading: "Vyberte Materiál", image: "" },
+    { step: 1, name: "drevo_typ", label: "Typ", value: null, data: drevo_typ, heading: "Vyberte Typ Dřeva", image: "0ea0fd2e-4ca2-4ba9-a753-fac012739e4a.jpg" },
+  ],
+
+  history: [],
+
+  initializeHistory: () => set((state) => {
+    const firstStep = state.steps.find((step) => step.step === 0);
+    if (firstStep && state.history.length === 0) {
+      return { history: [ firstStep ] };
+    }
+    return state;
+  }),
+
+  nextStep: (nextStepName) => set((state) => {
+    const nextStep = state.steps.find((step) => step.name === nextStepName);
+    if (nextStep) {
+      return { history: [...state.history, nextStep] };
+    }
+    return state;
+  }),
+
+  prevStep: () => set((state) => {
+    if (state.history.length > 1) {
+      return { history: state.history.slice(0, -1) };
+    }
+    return state;
+  }),
+
+  getCurrentStep: () => {
+    const history = get().history;
+    return history[history.length - 1] || null;
+  },
+
+  setStepValue: (stepName, stepValue) => set((state) => {
+    const stepIndex = state.history.findIndex((step) => step.name === stepName);
+    if (stepIndex === -1) return state;
+
+    const updatedStep = { ...state.history[stepIndex], value: stepValue };
+
+    const updatedHistory = [...state.history];
+    updatedHistory[stepIndex] = updatedStep;
+
+    return { history: updatedHistory };
+  }),
+
+  isStepCompleted: () => {
+    const lastStep = get().history[get().history.length - 1];
+    return lastStep ? lastStep.value !== null : false;
+  },
+
+}));
+
+
 class App extends React.Component {
 
-  constructor() {
-    super();
-    this.materials = materials;
-    this.drevo_typ = drevo_typ;
+  constructor(props) {
+    super(props);
+    const { history } = stepStore.getState();
+    this.state = {
+      history,
+    };
   }
 
-  state = {
-  	step: 0,
-    image: null,
-    history: [], // step, name, heading, image, data
-    material: null,
-    drevo_typ: null
-  };
+  // Subscribe to store updates and initialize history when the component mounts
+  componentDidMount() {
+    this.unsubscribe = stepStore.subscribe((state) => {
+      this.setState({
+        history: state.history,
+      });
+    });
 
-  increaseStep = () => {
-    this.setState((prevState) => (
-      { step: prevState.step + 1 }
-    ));
+    // Initialize history with the first step if it hasn't been done
+    stepStore.getState().initializeHistory();
+  }
+
+  // Unsubscribe from the store when the component unmounts
+  componentWillUnmount() {
+    if (this.unsubscribe) {
+      this.unsubscribe();
+    }
+  }
+
+  increaseStep = (nextStepValue) => {
+    stepStore.getState().nextStep(nextStepValue);
   };
 
   decreaseStep = () => {
-    this.setState((prevState) => (
-      { step: (prevState.step > 0) ? prevState.step - 1 : 0 }
-    ));
-  };
-
-  appendToHistory = (newStep, newName) => {
-    this.setState((prevState) => ({
-      history: [...prevState.items, {step: newStep, name: newName}]
-    }));
-  };
-
-  removeFromHistory = () => {
-    this.setState((prevState) => ({
-      history: prevState.items.slice(0, -1)
-    }));
-  };
-
-  setImage = (value) => {
-    this.setState({ image: value });
-  };
-
-  setMaterial = (value) => {
-    this.setState({ material: value });
-  };
-
-  setDrevoTyp = (value) => {
-    this.setState({ drevo_typ: value });
-  };
-
-  isStepSelected = () => {
-    const { step, material } = this.state;
-    switch (step) {
-      case 0:
-        return !!material;
-      default:
-        return false;
-    }
+    stepStore.getState().prevStep();
   };
 
   renderHeader = () => {
+    const history = stepStore.getState().history;
     return (
       <Header
-        step={this.state.step}
+        history={history}
       />
     );
   };
 
-  renderMaterial = () => {
-    return (
-      <Content
-        heading="Vyberte Materiál" 
-        step={this.state.step} 
-        image={this.state.image} 
-      >
-        <SingleOptions 
-          name="material"
-          data={this.materials}
-          onChange={this.setMaterial} 
-        />
-      </Content>
-    );
-  };
-
-  renderDrevoTyp = () => {
-    return (
-      <Content
-        heading="Vyberte Typ Dřeva" 
-        step={this.state.step} 
-        image={this.state.image}
-      >
-        <SingleOptions 
-          name="drevo_typ"
-          data={this.drevo_typ}
-          onChange={this.setDrevoTyp} 
-        />
-      </Content>
-    );
-  };
-
-  renderCurrentStep = () => {
-    const { step } = this.state;
-    switch (step) {
-      case 0:
-        return this.renderMaterial();
-      case 1:
-        return this.renderDrevoTyp();
-      default:
-        return this.renderMaterial();
+  renderContent = () => {
+    const currentStep = stepStore.getState().getCurrentStep();
+    if (currentStep) {
+      return (
+        <Content
+          heading={currentStep.heading} 
+          step={currentStep.step} 
+          image={currentStep.image} 
+        >
+          <SingleOptions 
+            name={currentStep.name} 
+            data={currentStep.data} 
+            onChange={(value) => stepStore.getState().setStepValue(currentStep.name, value)} 
+          />
+        </Content>
+      );
     }
   };
 
   renderFooter = () => {
-    const isStepSelected = this.isStepSelected();
+    const isStepCompleted = stepStore.getState().isStepCompleted();
     return (
       <Footer
-        isStepSelected={isStepSelected} 
-        onClick={() => this.increaseStep()} 
+        isStepSelected={isStepCompleted} 
+        onClick={() => stepStore.getState().nextStep()} 
       />
     );
   };
@@ -138,7 +149,7 @@ class App extends React.Component {
     return (
       <div className="w-full h-screen max-h-screen flex flex-col items-center overflow-x-hidden">
         {this.renderHeader()}
-        {this.renderCurrentStep()}
+        {this.renderContent()}
         {this.renderFooter()}
       </div>
     );

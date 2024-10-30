@@ -14,13 +14,11 @@ class SingleOptions extends React.Component {
     const newValue = String(e);
     this.setState((prevState) => ({
       value: prevState.value === newValue ? null : newValue
-    }),
-    () => {
-        if (this.props.onChange) {
-          this.props.onChange(this.state.value);
-        }
+    }), () => {
+      if (this.props.onChange) {
+        this.props.onChange(this.state.value);
       }
-    );
+    });
   }
 
   render() {

@@ -10,12 +10,18 @@ class Header extends React.Component {
     return (
       <nav className="flex items-center whitespace-nowrap overflow-x-auto overflow-y-hidden">
         <div className="hidden md:flex items-center flex-shrink-1 pl-5 pr-32">
-          <div tabIndex="0" className="outline-none flex items-center group leading-tight mx-2 py-3 md:pt-5 md:pb-4 ml-not-first cursor-pointer select-none font-bold">
+          {this.props.history.map((step, index) => (
+          <div
+            key={index} 
+            tabIndex={index} 
+            className="outline-none flex items-center group leading-tight mx-2 py-3 md:pt-5 md:pb-4 ml-not-first cursor-pointer select-none font-bold"
+          >
             <div className="flex flex-shrink-0 items-center justify-center mr-3 rounded-full border-1 border-gray w-8 h-8 transition duration-200 border-none bg-dark text-white group-hover:bg-gray group-focus:bg-gray group-hover:text-black group-focus:text-black">
-              1
+              {step.step+1}
             </div>
-            <span>Materiál</span>
+            <span>{step.label}</span>
           </div>
+          ))}
         </div>
       </nav>
     );
