@@ -6,22 +6,22 @@ class Footer extends React.Component {
     super(props);
   }
 
-  renderTotal = () => {
-    return(
-      <strong className="text-2xl text-white">5&nbsp;001&nbsp;Kč</strong>
-    );
-  };
-
   handleClickButtonNext = (e) => {
     if (this.props.isStepSelected) {
       this.props.onClick();
     }
   }
 
+  renderTotal = () => {
+    return(
+      <strong className="text-2xl text-white">{this.props.totalPrice} Kč</strong>
+    );
+  };
+
   renderNextButton = () => {
     let classes = "";
     if (this.props.isStepSelected) {
-      classes = " cursor-pointer font-bold animate-button_pulse hover:border-primary focus:border-primary hover:border-2 focus:border-2 hover:border-white focus:border-white hover:bg-transparent focus:bg-transparent hover:text-white focus:text-white";
+      classes = "cursor-pointer font-bold animate-button_pulse hover:border-primary focus:border-primary hover:border-2 focus:border-2 hover:border-white focus:border-white hover:bg-transparent focus:bg-transparent hover:text-white focus:text-white";
     } else {
       classes = "cursor-not-allowed font-normal opacity-50";
     }

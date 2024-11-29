@@ -20,7 +20,7 @@ class Content extends React.Component {
     return (
       <div className="outline-none flex items-center group leading-tight mb-5 md:mb-10">
         <div className="w-8 h-8 md:w-10 md:h-10 mr-5 flex shrink-0 items-center justify-center mr-3 rounded-full border-1 border-dark transition duration-200 border-none bg-dark text-white text-xl">
-          {this.props.step+1}
+          {this.props.index+1}
         </div>
         <h1>{this.props.heading}</h1>
       </div>

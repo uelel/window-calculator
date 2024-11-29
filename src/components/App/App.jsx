@@ -1,11 +1,8 @@
 import React from 'react';
 import { create } from "zustand";
 
-// Data
-import {
-  materials,
-  drevo_typ
-} from '../../data';
+// Steps
+import { steps } from '../../steps';
 
 // Components
 import Header from '../Header';
@@ -15,29 +12,42 @@ import Footer from '../Footer';
 
 const stepStore = create((set, get) => ({
 
-  steps: [
-    { step: 0, name: "material", label: "Materiál", value: null, data: materials, heading: "Vyberte Materiál", image: "" },
-    { step: 1, name: "drevo_typ", label: "Typ", value: null, data: drevo_typ, heading: "Vyberte Typ Dřeva", image: "0ea0fd2e-4ca2-4ba9-a753-fac012739e4a.jpg" },
-  ],
-
   history: [],
 
+  // Adds empty value attribute to given step
+  prepareStep: (step) => {
+    return { ...step, value: null };
+  },
+
+  // Initializes empty history with first step
   initializeHistory: () => set((state) => {
-    const firstStep = state.steps.find((step) => step.step === 0);
+    const firstStep = steps.find((step) => step.index === 0);
     if (firstStep && state.history.length === 0) {
-      return { history: [ firstStep ] };
+      return { history: [ get().prepareStep(firstStep) ] };
     }
     return state;
   }),
 
-  nextStep: (nextStepName) => set((state) => {
-    const nextStep = state.steps.find((step) => step.name === nextStepName);
-    if (nextStep) {
-      return { history: [...state.history, nextStep] };
-    }
-    return state;
+  // Searches for selected data in the current step in history
+  // Takes next_step attribute from selected data
+  // Appends new step to history with name == next_step
+  nextStep: () => set((state) => {
+    const lastStep = state.history[state.history.length - 1];
+    if (!lastStep || !lastStep.value) return state;
+
+    // Find the selected item in the last step's data
+    const selectedItem = lastStep.data.find((item) => item.value === lastStep.value);
+    if (!selectedItem || !selectedItem.next_step) return state;
+
+    // Find the step corresponding to the next_step attribute
+    const nextStep = steps.find((step) => step.name === selectedItem.next_step);
+    if (!nextStep) return state;
+
+    // Append the next step to the history
+    return { history: [ ...state.history, get().prepareStep(nextStep) ] };
   }),
 
+  // Removes current step from history
   prevStep: () => set((state) => {
     if (state.history.length > 1) {
       return { history: state.history.slice(0, -1) };
@@ -45,11 +55,13 @@ const stepStore = create((set, get) => ({
     return state;
   }),
 
+  // Returns current step from history
   getCurrentStep: () => {
     const history = get().history;
     return history[history.length - 1] || null;
   },
 
+  // Sets value attribute of step with given name in history
   setStepValue: (stepName, stepValue) => set((state) => {
     const stepIndex = state.history.findIndex((step) => step.name === stepName);
     if (stepIndex === -1) return state;
@@ -62,6 +74,24 @@ const stepStore = create((set, get) => ({
     return { history: updatedHistory };
   }),
 
+  // Calculates total price over all steps in history
+  getTotal: () => {
+    const history = get().history;
+    let total = 0;
+
+    history.forEach((step) => {
+      if (step.value) {
+        const selectedItem = step.data.find((item) => item.value === step.value);
+        if (selectedItem) {
+          total += selectedItem.price;
+        }
+      }
+    });
+
+    return total;
+  },
+
+  // Returns true if current step in history contains a value
   isStepCompleted: () => {
     const lastStep = get().history[get().history.length - 1];
     return lastStep ? lastStep.value !== null : false;
@@ -99,16 +129,9 @@ class App extends React.Component {
     }
   }
 
-  increaseStep = (nextStepValue) => {
-    stepStore.getState().nextStep(nextStepValue);
-  };
-
-  decreaseStep = () => {
-    stepStore.getState().prevStep();
-  };
-
   renderHeader = () => {
     const history = stepStore.getState().history;
+    console.log(history);
     return (
       <Header
         history={history}
@@ -122,7 +145,7 @@ class App extends React.Component {
       return (
         <Content
           heading={currentStep.heading} 
-          step={currentStep.step} 
+          index={currentStep.index} 
           image={currentStep.image} 
         >
           <SingleOptions 
@@ -137,9 +160,12 @@ class App extends React.Component {
 
   renderFooter = () => {
     const isStepCompleted = stepStore.getState().isStepCompleted();
+    const totalPrice = stepStore.getState().getTotal();
+    console.log(totalPrice);
     return (
       <Footer
         isStepSelected={isStepCompleted} 
+        totalPrice={totalPrice} 
         onClick={() => stepStore.getState().nextStep()} 
       />
     );
