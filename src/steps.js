@@ -1,6 +1,7 @@
 import {
-  materials,
-  drevo_typ
+  material,
+  drevo_typ,
+  sklo_vrstvy
 } from './data';
 
 export const steps = [
@@ -8,7 +9,7 @@ export const steps = [
     index: 0,
     name: "material",
     label: "Materiál",
-    data: materials,
+    data: material,
     heading: "Vyberte Materiál",
     image: ""
   },
@@ -24,7 +25,7 @@ export const steps = [
     index: 1, 
     name: "pocet_vrstev", 
     label: "Sklo", 
-    data: pocet_vrstev, 
+    data: sklo_vrstvy, 
     heading: "Vyberte Sklo", 
     image: "06a46cf5-4ebf-43f5-9999-9fcc517f7548.jpg"
   },

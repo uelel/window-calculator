@@ -10,6 +10,7 @@ import Content from '../Content';
 import SingleOptions from '../SingleOptions';
 import Footer from '../Footer';
 
+// stepStore handling app states
 const stepStore = create((set, get) => ({
 
   history: [],

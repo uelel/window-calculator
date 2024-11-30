@@ -1,4 +1,4 @@
-export const materials = [
+export const material = [
   { 
     label: "Dřevěná okna",
     value: "drevo",
@@ -148,5 +148,68 @@ export const profil = [
     desc: "Dřevěná okna vhodná do pasivních a nízkoenergetických staveb.", 
     recommended: true, 
     next_step: "prislusenstvi" 
+  }
+];
+
+export const parapety = [
+  { 
+    label: "Vnější parapet pozinkovaný", 
+    value: "vnejsi_parapet_pozinkovany", 
+    price: 150, 
+    image: "69a483f7-9ee2-44cb-bd78-b5983889ad9d.png", 
+    desc: "Vnější parapety se od sebe liší použitým materiálem, způsobem zpracování a tloušťkou použitého materiálu.", 
+    recommended: true, 
+    next_step: "rekapitulace" 
+  },
+  { 
+    label: "Vnitřní parapet antracit", 
+    value: "vnitrni_parapet_antracit", 
+    price: 175, 
+    image: "8f797637-533f-4c5a-a554-7f53f57e9061.jpg", 
+    desc: "Parapety jsou součástí každého okna.", 
+    recommended: true, 
+    next_step: "rekapitulace" 
+  }
+];
+
+export const sitky = [
+  { 
+    label: "Sítka proti hmyzu pro hliníková okna", 
+    value: "hlinikova", 
+    price: 325, 
+    image: "79f3a89a-8335-42ab-81c1-dfdcc98a21cb.jpg", 
+    desc: "", 
+    recommended: true, 
+    next_step: "rekapitulace" 
+  },
+  { 
+    label: "Síťka proti hmyzu pro plastová okna", 
+    value: "plastova", 
+    price: 255, 
+    image: "baa61feb-7b3c-4df8-80e2-5d312b2c3dfd.jpg", 
+    desc: "Nejednodušší ochrana před dotěrným hmyzem.", 
+    recommended: true, 
+    next_step: "rekapitulace" 
+  }
+];
+
+export const kliky = [
+  { 
+    label: "Plastové kliky", 
+    value: "plastova", 
+    price: 85, 
+    image: "c91ac7df-fdd2-47f5-9f56-51c5da691126.jpg", 
+    desc: "Nyní v akci!", 
+    recommended: true, 
+    next_step: "rekapitulace" 
+  },
+  { 
+    label: "Hliníkové kliky", 
+    value: "hlinikova", 
+    price: 115, 
+    image: "64392cb4-ee14-4edd-a9ae-9d30e54728f4.jpg", 
+    desc: "", 
+    recommended: true, 
+    next_step: "rekapitulace" 
   }
 ];
