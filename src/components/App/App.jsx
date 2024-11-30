@@ -10,7 +10,7 @@ import Content from '../Content';
 import SingleOptions from '../SingleOptions';
 import Footer from '../Footer';
 
-// stepStore handling app states
+/* stepStore handling app states */
 const stepStore = create((set, get) => ({
 
   history: [],
@@ -29,8 +29,8 @@ const stepStore = create((set, get) => ({
     return state;
   }),
 
-  // Searches for selected data in the current step in history
-  // Takes next_step attribute from selected data
+  // Searches for selected data item in the current step in history
+  // Reads next_step attribute from selected data item
   // Appends new step to history with name == next_step
   nextStep: () => set((state) => {
     const lastStep = state.history[state.history.length - 1];
@@ -62,7 +62,7 @@ const stepStore = create((set, get) => ({
     return history[history.length - 1] || null;
   },
 
-  // Sets value attribute of step with given name in history
+  // Sets value attribute within step with given name in history
   setStepValue: (stepName, stepValue) => set((state) => {
     const stepIndex = state.history.findIndex((step) => step.name === stepName);
     if (stepIndex === -1) return state;
