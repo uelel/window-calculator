@@ -17,7 +17,7 @@ class Header extends React.Component {
             key={index} 
             tabIndex={index} 
             data-name={step.name}
-            className={`outline-none flex items-center group leading-tight mx-2 py-3 md:pt-5 md:pb-4 ml-not-first cursor-pointer select-none ${
+            className={`mr-8 outline-none flex items-center group leading-tight mx-2 py-3 md:pt-5 md:pb-4 ml-not-first cursor-pointer select-none ${
               index === lastStepIndex ? 'font-bold' : ''
             }`}
           >
@@ -28,7 +28,7 @@ class Header extends React.Component {
             }`}>
               {step.index+1}
             </div>
-            <span>{step.label}</span>
+            <span className="truncate">{step.label}</span>
           </div>
           ))}
         </div>

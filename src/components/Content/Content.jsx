@@ -33,7 +33,7 @@ class Content extends React.Component {
       var classes = "basis-full";
     }
     return (
-      <div className={`w-full h-full flex flex-col justify-start items-start px-4 md:px-12 py-8 md:py-10 overflow-hidden bg-light grow-0 shrink-0 ${classes}`}>
+      <div className={`w-full h-full flex flex-col justify-start items-start px-4 md:px-12 py-8 md:py-10 bg-light grow-0 shrink-0 ${classes}`}>
         {this.renderHeading()}
         <div className="w-full">
           {this.props.children}

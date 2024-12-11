@@ -15,7 +15,7 @@ export const material = [
     image: "45c0970d-a5a4-4caf-a14c-19458e8239d1.jpg", 
     desc: "Plastová okna jsou velmi rozšířená.", 
     recommended: false,
-    next_step: "sklo_vrstvy" 
+    next_step: "sklo_pocet_vrstev" 
   }
 ];
 
