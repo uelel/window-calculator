@@ -21,8 +21,10 @@ class Header extends React.Component {
               index === lastStepIndex ? 'font-bold' : ''
             }`}
           >
-            <div className={`flex flex-shrink-0 items-center justify-center mr-3 rounded-full border border-gray w-8 h-8 transition duration-200 ${
-              index === lastStepIndex ? 'text-white group-hover:text-black group-focus:text-black bg-dark group-hover:bg-gray group-focus:bg-gray' : 'text-black group-hover:bg-gray group-focus:bg-gray'
+            <div className={`flex flex-shrink-0 items-center justify-center mr-3 rounded-full w-8 h-8 transition duration-200 ${
+              index === lastStepIndex ? 
+              'text-white group-hover:text-black group-focus:text-black bg-dark border-dark group-hover:bg-lightgray group-focus:bg-lightgray' : 
+              'text-black group-hover:bg-lightgray group-focus:bg-lightgray border border-lightgray'
             }`}>
               {step.index+1}
             </div>

@@ -30,6 +30,7 @@ module.exports = {
         'medium': '#008cb4',
         'light': '#f4f7fa',
         'gray': '#9CA3AF',
+        'lightgray': '#E3E6EE',
         'black': '#000000'
       },
       spacing: {
