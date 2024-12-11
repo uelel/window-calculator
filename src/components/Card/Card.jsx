@@ -14,11 +14,14 @@ class Card extends React.Component {
   }
 
   renderImage = () => {
+    const imagePadding = this.props.imageFull ? "p-0" : "px-4 pt-4";
     return (
-      <div
-        className="h-32 lg:h-48 bg-center bg-no-repeat bg-cover rounded-t"
-        style={{backgroundImage: `url(images/${this.props.image})`}}
-      ></div>
+      <div className={`h-32 lg:h-48 rounded-t ${imagePadding}`}>
+        <div
+          className="w-full h-full bg-center bg-no-repeat bg-cover"
+          style={{backgroundImage: `url(images/${this.props.image})`}}
+        ></div>
+      </div>
     );
   }
 

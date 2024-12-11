@@ -36,6 +36,7 @@ class SingleOptions extends React.Component {
           desc={item.desc} 
           recommended={item.recommended} 
           onClick={this.changeState} 
+          imageFull={this.props.imageFull}
           isSelected={this.state.value === item.value} 
         />
         ))}

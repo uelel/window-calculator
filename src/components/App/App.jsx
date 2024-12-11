@@ -136,7 +136,6 @@ class App extends React.Component {
 
   renderHeader = () => {
     const history = stepStore.getState().history;
-    console.log(history);
     return (
       <Header
         history={history}
@@ -147,6 +146,9 @@ class App extends React.Component {
   renderContent = () => {
     const currentStep = stepStore.getState().getCurrentStep();
     if (currentStep) {
+      console.log(currentStep.index);
+      let imageFull = currentStep && currentStep.index === 0;
+      console.log(imageFull);
       return (
         <Content
           heading={currentStep.heading} 
@@ -156,6 +158,7 @@ class App extends React.Component {
           <SingleOptions 
             name={currentStep.name} 
             data={currentStep.data} 
+            imageFull={imageFull} 
             onChange={(value) => stepStore.getState().setStepValue(currentStep.name, value)} 
           />
         </Content>
@@ -166,7 +169,6 @@ class App extends React.Component {
   renderFooter = () => {
     const isStepCompleted = stepStore.getState().isStepCompleted();
     const totalPrice = stepStore.getState().getTotal();
-    console.log(totalPrice);
     return (
       <Footer
         isStepSelected={isStepCompleted} 

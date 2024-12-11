@@ -7,7 +7,6 @@ class Header extends React.Component {
 
   renderNavigation = () => {
     const lastStepIndex = this.props.history.length - 1;
-    console.log('lastStepIndex='+lastStepIndex)
 
     return (
       <nav className="flex items-center whitespace-nowrap overflow-x-auto overflow-y-hidden">
