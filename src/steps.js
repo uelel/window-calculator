@@ -2,7 +2,12 @@ import {
   material,
   drevo_typ,
   sklo_vrstvy,
-  pocet_kridel
+  pocet_kridel,
+  zpusob_otevirani,
+  profil,
+  parapety,
+  sitky,
+  kliky
 } from './data';
 
 export const steps = [
@@ -34,4 +39,29 @@ export const steps = [
     heading: "Vyberte Počet křídel", 
     image: "99211555-6283-4b9f-bb75-21a41735c6d3.jpg"
   },
+  {
+    name: "sklo_zpusob_otevirani", 
+    label: "Způsob otvírání", 
+    data: zpusob_otevirani, 
+    heading: "Vyberte Způsob otvírání", 
+    image: "06a46cf5-4ebf-43f5-9999-9fcc517f7548.jpg"
+  },
+  {
+    name: "profil", 
+    label: "Profil", 
+    data: profil, 
+    heading: "Vyberte Profil", 
+    image: "06a46cf5-4ebf-43f5-9999-9fcc517f7548.jpg"
+  },
+  {
+    name: "prislusenstvi", 
+    label: "Příslušenství", 
+    data: [
+      parapety,
+      sitky,
+      kliky
+    ], 
+    heading: "Vyberte Příslušenství", 
+    image: "06a46cf5-4ebf-43f5-9999-9fcc517f7548.jpg"
+  }
 ];
