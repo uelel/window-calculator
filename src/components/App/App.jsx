@@ -15,16 +15,20 @@ const stepStore = create((set, get) => ({
 
   history: [],
 
-  // Adds empty value attribute to given step
+  initialStep: "material",
+
+  // Adds empty value attribute to given step and assigns an index
   prepareStep: (step) => {
-    return { ...step, value: null };
+    const currentIndex = get().history.length;
+    return { ...step, value: null, index: currentIndex };
   },
 
-  // Initializes empty history with first step
+  // Initializes empty history with the step specified by initialStep
   initializeHistory: () => set((state) => {
-    const firstStep = steps.find((step) => step.index === 0);
-    if (firstStep && state.history.length === 0) {
-      return { history: [ get().prepareStep(firstStep) ] };
+    const initialStepName = get().initialStep;
+    const initialStep = steps.find((step) => step.name === initialStepName);
+    if (initialStep && state.history.length === 0) {
+      return { history: [ get().prepareStep(initialStep) ] };
     }
     return state;
   }),

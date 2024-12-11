@@ -6,7 +6,6 @@ import {
 
 export const steps = [
   { 
-    index: 0,
     name: "material",
     label: "Materiál",
     data: material,
@@ -14,7 +13,6 @@ export const steps = [
     image: ""
   },
   {
-    index: 1, 
     name: "drevo_typ", 
     label: "Typ", 
     data: drevo_typ, 
@@ -22,7 +20,6 @@ export const steps = [
     image: "0ea0fd2e-4ca2-4ba9-a753-fac012739e4a.jpg"
   },
   {
-    index: 1, 
     name: "pocet_vrstev", 
     label: "Sklo", 
     data: sklo_vrstvy, 
