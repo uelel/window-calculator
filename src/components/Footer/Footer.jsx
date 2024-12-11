@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 class Footer extends React.Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class Footer extends React.Component {
     return (
       <button
         type="button"
-        className={`flex group px-5 py-2 rounded-full focus:outline-none leading-tight ml-4 md:ml-10 justify-center md:w-40 bg-white border-white border-gray border-1 ${classes}`}
+        className={`flex group px-5 py-2 md:py-3 rounded-full focus:outline-none leading-tight ml-4 md:ml-10 justify-center md:w-40 bg-white border-white border-gray border-1 ${classes}`}
         data-name="btn-next" 
         onClick={this.handleClickButtonNext}
       >
